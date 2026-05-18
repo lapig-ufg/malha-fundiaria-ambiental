@@ -1,6 +1,6 @@
 # 07. Métricas de Avaliação das Malhas Fundiárias 
 
-Nesta etapamostra  a estrutura metodológica aplicada na avaliação comparativa de integridade geométrica e topológica entre as bases de dados espaciais Malha Fundiária - LAPIG e Cartas da Terra (iGPP).
+Nesta etapamostra  a estrutura metodológica aplicada na avaliação comparativa de integridade geométrica e topológica entre as bases de dados espaciais Malha Fundiária - LAPIG e Cartas da Terra (iGPP). Nesta análise, não foi contabilizado as áreas de vazio fundiário da malha fundiária da Cartas da Terra (iGPP).
 
 ## Métricas utilizadas
 
