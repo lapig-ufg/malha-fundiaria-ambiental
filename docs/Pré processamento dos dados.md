@@ -21,4 +21,19 @@ Figura 2 - Fluxograma de Pré-processamento
 
 ![Figura 3 - Exemplo de Grilagem Digital](figuras/grilagem_digital.png)
 
+### Código para processamento dos dados do INCRA
+
+```python
+function hello(name) {
+    console.log(`Hello, ${name}!`);
+}
+```
+
+### Código para processamentos dos dados do Cadastro Ambiental Rural (CAR)
+```python
+function hello(name) {
+    console.log(`Hello, ${name}!`);
+}
+```
+
 Figura 3 - Exemplo de inconsistências de área
