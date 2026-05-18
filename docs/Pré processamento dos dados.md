@@ -24,7 +24,7 @@ Figura 2 - Fluxograma de Pré-processamento
 ### Código para processamento dos dados do INCRA
 
 ```python
-(https://github.com/boliveirageo/malhafundiariaambiental/blob/main/utils/mfa_pre_processing_incra.py)
+![](https://github.com/boliveirageo/malhafundiariaambiental/blob/main/utils/mfa_pre_processing_incra.py)
 ```
 
 ### Código para processamentos dos dados do Cadastro Ambiental Rural (CAR)
