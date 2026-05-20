@@ -1,7 +1,7 @@
 site_name: Documentação - Malha Fundiária Ambiental
 site_author: Bernard Silva de Oliveira
 theme:
-  name: mkdocs
+  name: material
  
 nav:
   - 'Home': 'index.md'
