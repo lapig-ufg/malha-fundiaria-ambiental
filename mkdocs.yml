@@ -5,12 +5,12 @@ theme:
  
 nav:
   - 'Home': 'index.md'
-  - 'Ingestão de Dados': 'Ingestão de Dados.md'
-  - 'Pré-processamento': 'Pré processamento dos dados.md'
-  - 'Hierarquização': 'Hierarquização.md'
-  - 'Conversão de estrutura Matricial': 'Conversão de estrutura Matricial.md'
-  - 'Analise de sobreposição': 'Analise de sobreposição.md'
-  - 'Integração Fundiária e Ambiental': 'Integração Fundiária e Ambiental.md'
-  - 'Métricas de Avaliação': 'Métricas de Avaliação.md'
-  - 'Visualização de Dados': 'Estatisticas.md' 
+  - 'Data Ingestion': 'Data Ingestion.md'
+  - 'Data Preprocessing': 'Data Preprocessing.md'
+  - 'Hierarchy of Land Ternure Layer': 'Hierarchy of Land Ternure Layer.md'
+  - 'Layer Reclassification': 'Layer Reclassification.md'
+  - 'Overlap Analysis': 'Overlap Analysis.md'
+  - 'Environnmental Integration': 'Environnmental Integration.md'
+  - 'Evaluation Metrics': 'Evaluation Metrics.md'
+  - 'Statistics': 'Statistics.md' 
 
