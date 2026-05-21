@@ -1,36 +1,36 @@
-# Malha Fundiária Ambiental do Brasil: Base Integrada para Análise e Gestão Territorial 
+# Brazil's Enviromental Land Tenure Dataset: Integrated Base for Territorial Analysis and Management
 
-## Sobre a Malha Fundiária Ambiental
-Uma base geoespacial integrada que organiza e qualifica a estrutura fundiária e ambiental do Brasil, conectando dados territoriais para apoiar a gestão, a análise e a governança do território.
+## About the Enviromental Land Tenure Dataset
+An integrated geospatial database that organizes and qualifies the land tenure and environmental structure of Brazil, connecting territorial data to support territorial management, analysis, and governance.
 
-## Missão
-Transformar dados territoriais em informação confiável para tomada de decisão
+## Mission
+Transforming territorial data into reliable information for decision-making
 
-O Brasil possui uma grande diversidade de bases fundiárias e ambientais, muitas vezes fragmentadas, inconsistentes e sobrepostas. Essa falta de integração dificulta análises, compromete a segurança jurídica e limita a efetividade de políticas públicas. A Malha Fundiária Ambiental nasce para integrar essas informações em uma base única, padronizada e consistente e de atualização contínua, permitindo uma leitura clara da ocupação do território.
+Brazil has a great diversity of land tenure and environmental databases, which are often fragmented, inconsistent, and overlapping. This lack of integration hinders analyses, compromises legal security, and limits the effectiveness of public policies. The Enviromental Land Tenure Dataset was created to integrate this information into a single, standardized, consistent, and continuously updated database, allowing a clear understanding of territorial occupation.
 
-Acreditamos que a gestão territorial eficiente começa com dados confiáveis. Quando a informação é estruturada e acessível, torna-se possível identificar conflitos, avaliar ativos ambientais e apoiar decisões mais sustentáveis.
+We believe that efficient territorial management begins with reliable data. When information is structured and accessible, it becomes possible to identify conflicts, evaluate environmental assets, and support more sustainable decisions.
 
-## Como é feito
-Da integração de dados ao produto territorial
+## How it is done
+From data integration to the territorial product
 
-![Figura 4 - Fluxograma de Integração Ambiental](figuras/como_e_feito_2.png)
+![Figure 4 - Environmental Integration Flowchart](figuras/como_e_feito_2.png)
 
-## O que o dado permite
+## What the data enables
 
-![Figura 4 - Fluxograma de Integração Ambiental](figuras/o_que_o_dado_permite_2.png)
+![Figure 4 - Environmental Integration Flowchart](figuras/o_que_o_dado_permite_2.png)
 
-## Quem desenvolve
+## Who develops it
 
-O produto é desenvolvido pelo Laboratório de Sensoriamento Remoto e Geoprocessamento (LAPIG) da Universidade Federal de Goiás (UFG). A iniciativa reúne uma equipe multidisciplinar com atuação em sensoriamento remoto, geoprocessamento, ciência de dados, ciência ambiental e políticas públicas, dedicada ao desenvolvimento de soluções para o monitoramento e a gestão do território.
+The product is developed by the Remote Sensing and Geoprocessing Laboratory (LAPIG) of the Federal University of Goiás (UFG). The initiative brings together a multidisciplinary team working in remote sensing, geoprocessing, data science, environmental science, and public policies, dedicated to developing solutions for monitoring and territorial management.
 
-## Contato
+## Contact
 
-Para parcerias, dúvidas acadêmicas ou sugestões, entre em contato pelo e-mail lapig.ufg@gmail.com
+For partnerships, academic questions, or suggestions, please contact us at lapig.ufg@gmail.com
 
-## Histórico de versões
+## Version History
 
 * v 1.0
-    * Construção da Malha Fundiária Ambiental Brasil. 
+    * Construction of the Brazil Enviromental Land Tenure Dataset.
 
 
-Para validar a malha, aceda ao [Repositório do Projeto no GitHub](https://github.com/boliveirageo/malhafundiariaambiental).
+To validate the mesh, access the [Project Repository on GitHub](https://github.com/boliveirageo/malhafundiariaambiental).

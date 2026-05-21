@@ -1,32 +1,32 @@
-# 02. Pré-processamento dos dados 
+# 02. Data Preprocessing
 
-Nesta etapa, os dados integrados no banco PostgreSQL passam por correções geométricas e filtragens, com o objetivo de garantir consistência espacial, integridade das feições e confiabilidade nos processos subsequentes.
+In this stage, the data integrated into the PostgreSQL database undergo geometric corrections and filtering, with the aim of ensuring spatial consistency, feature integrity, and reliability in subsequent processes.
 
-## Como Funciona
+## How it Works
 
-01. **Correção Topológica e Reprojeção:** São eliminadas inconsistências geométricas e todas as camadas são reprojetadas para um sistema métrico padrão (ESRI:102033 — Albers Equal Area Conic).
-02. **Remoção de duplicidades:** Registros duplicados são identificados e removidos, mantendo-se o registro mais recente
-03. **Remoção de registros inativos e áreas especiais:** São excluídos imóveis com status “Cancelado” ou “Suspenso”, bem como categorias que possuem representação mais confiável em outras bases oficiais, como áreas especiais.
-04. **Exclusão de inconsistências de área:** Imóveis do CAR com área igual ou superior à área do município são removidos, evitando distorções associadas à grilagem digital.
-05. **Remoção de sobreposição:** Sobreposições são resolvidas por meio da priorização do registro mais recente e do ajuste espacial em relação às bases do INCRA (SIGEF/SNCI) e CAR. Pequenas propriedades são priorizadas em relação às grandes, com recorte das feições.
-06. **Rasterização:** Todas as camadas são convertidas para formato raster com Pixel de 10 metros, compatível com escala 1:25.000, permitindo a padronização espacial e a aplicação das etapas seguintes de análise.
+01. **Topological Correction and Reprojection:** Geometric inconsistencies are eliminated and all layers are reprojected to a standard metric system (ESRI:102033 — Albers Equal Area Conic).
+02. **Removal of duplicates:** Duplicate records are identified and removed, keeping the most recent record.
+03. **Removal of inactive records and special areas:** Properties with "Cancelled" or "Suspended" status are excluded, as well as categories that have more reliable representation in other official databases, such as special areas.
+04. **Exclusion of area inconsistencies:** CAR properties with an area equal to or greater than the area of the municipality are removed, avoiding distortions associated with digital land grabbing (grilagem digital).
+05. **Overlap removal:** Overlaps are resolved by prioritizing the most recent record and making spatial adjustments in relation to the INCRA (SIGEF/SNCI) and CAR databases. Small properties are prioritized over large ones, with feature clipping.
+06. **Rasterization:** All layers are converted to raster format with a 10-meter pixel, compatible with a 1:25,000 scale, allowing spatial standardization and the application of the subsequent analysis stages.
 
 
-## Fluxograma 
-![Figura 2 - Fluxograma de Pré-processamento](figuras/pre_processamento_2.png)
+## Flowchart
+![Figure 2 - Preprocessing Flowchart](figuras/pre_processamento_2.png)
 
-Figura 2 - Fluxograma de Pré-processamento
+Figure 2 - Preprocessing Flowchart
 
-## Exemplo de inconsistências de área
+## Example of area inconsistencies
 
-![Figura 3 - Exemplo de Grilagem Digital](figuras/grilagem_digital.png)
+![Figure 3 - Example of Digital Land Grabbing](figuras/grilagem_digital.png)
 
-Figura 3 - Exemplo de inconsistências de área
+Figure 3 - Example of area inconsistencies
 
-### Código para processamento dos dados do INCRA
+### Code for processing INCRA data
 
 ```python
-#Importar módulos
+# Import modules
 from qgis.core import  QgsProject, QgsVectorLayer, QgsFeatureRequest, QgsFeature, QgsApplication,QgsDataSourceUri, QgsSpatialIndex,QgsGeometry,QgsField
 from qgis import processing
 import sys
@@ -38,7 +38,7 @@ import shutil
 import time
 import datetime
 
-# Configuração do Ambiente Standalone
+# Standalone Environment Configuration
 qgis_prefix = r'C:\Program Files\QGIS 3.xx\apps\qgis'
 QgsApplication.setPrefixPath(qgis_prefix, True)
 qgs = QgsApplication([], False)
@@ -50,36 +50,36 @@ import processing
 from processing.core.Processing import Processing
 Processing.initialize() 
 
-# 4. Adicionar os algoritmos nativos
+# 4. Add native algorithms
 QgsApplication.processingRegistry().addProvider(QgsNativeAlgorithms())
 
 def analisar_sobreposicao_otimizado(layer_path, saida):
     
-    #print(f"Lendo arquivo: {os.path.basename(layer_path)}")
-    layer = layer_path#QgsVectorLayer(layer_path, "camada_entrada", "memory")
+    #print(f"Reading file: {os.path.basename(layer_path)}")
+    layer = layer_path # QgsVectorLayer(layer_path, "camada_entrada", "memory")
     
-    # 1. Carregamos as features e já ordenamos por área (Menor -> Prioridade)
+    # 1. We load the features and already sort them by area (Smaller -> Priority)
     features_ordenadas = sorted([f for f in layer.getFeatures()], key=lambda f: f.geometry().area())
     
     layer_resultado = QgsVectorLayer(f"Polygon?crs={layer.crs().authid()}", "resultado", "memory")
     layer_resultado.dataProvider().addAttributes(layer.fields())
     layer_resultado.updateFields()
 
-    # 2. ÍNDICE ESPACIAL DINÂMICO
-    # Em vez de uma lista estática, usamos o índice para filtrar candidatos ao recorte
+    # 2. DYNAMIC SPATIAL INDEX
+    # Instead of a static list, we use the index to filter candidates for clipping
     index = QgsSpatialIndex()
     
-    # Dicionário para recuperar geometrias processadas via ID
+    # Dictionary to retrieve processed geometries via ID
     processed_geoms = {} 
 
-    print("Iniciando recorte hierárquico com filtro espacial...")
+    print("Starting hierarchical clipping with spatial filter...")
     
-    #with edit(layer_resultado): # Uso do context manager para commit em bloco
+    #with edit(layer_resultado): # Use of the context manager for block commit
     
     for i, feat in enumerate(features_ordenadas):
             geom_atual = feat.geometry()
             
-            # BUSCA ESPACIAL: Pega apenas IDs de geometrias que intersectam o bounding box da atual
+            # SPATIAL SEARCH: Gets only IDs of geometries that intersect the bounding box of the current one
             candidate_ids = index.intersects(geom_atual.boundingBox())
         
             for c_id in candidate_ids:
@@ -93,22 +93,22 @@ def analisar_sobreposicao_otimizado(layer_path, saida):
                 feat.setGeometry(geom_atual)
                 layer_resultado.dataProvider().addFeatures([feat])
                 
-                # ADICIONA AO ÍNDICE para os próximos imóveis
+                # ADDS TO THE INDEX for the next properties
                 new_id = feat.id()
                 index.addFeature(feat)
                 processed_geoms[new_id] = geom_atual
 
             if i % 500 == 0:
-                print(f"Processado: {i}/{len(features_ordenadas)} imóveis. Memória estável.")
+                print(f"Processed: {i}/{len(features_ordenadas)} properties. Stable memory.")
 
     processing.run("native:savefeatures", {'INPUT': layer_resultado, 'OUTPUT': saida})
    
 
 def consolidar_malhas_qgis(saida):
     """
-    Utiliza o motor de processamento do QGIS para priorizar a malha SIGEF.
+    Uses the QGIS processing engine to prioritize the SIGEF mesh.
     """
-    #Carregar as camadas
+    # Load layers
     uri = QgsDataSourceUri()
     uri.setConnection("localhost", "5432", "postgis", "postgres", "123456")    
     
@@ -119,26 +119,26 @@ def consolidar_malhas_qgis(saida):
     layer_snci = QgsVectorLayer(uri.uri(), "SNCI_PostGIS", "postgres")
     
     
-    print('Corrigindo a geometria SIGEF')
+    print('Fixing SIGEF geometry')
     fix_geo_sigef = processing.run("native:fixgeometries", {
         'INPUT': layer_sigef,
         'OUTPUT': 'memory:fix_sigef'
     })['OUTPUT']
     
-    print('Corrigindo a geometria SNCI')
+    print('Fixing SNCI geometry')
     fix_geo_snci = processing.run("native:fixgeometries", {
         'INPUT': layer_snci,
         'OUTPUT': 'memory:fix_snci'
     })['OUTPUT']
     
     if not layer_sigef.isValid() or not layer_snci.isValid():
-        print("Erro ao carregar as camadas. Verifique os caminhos.")
+        print("Error loading layers. Check the paths.")
         return
 
-    print("Iniciando recorte da base SNCI...")
+    print("Starting clip of SNCI base...")
 
-    # 2. Executar 'Difference': Remove do SNCI o que está sobreposto pelo SIGEF
-    # Isso garante que não haverá duplicidade geométrica.
+    # 2. Run 'Difference': Removes from SNCI what is overlapped by SIGEF
+    # This ensures there will be no geometric duplication.
     params_diff = {
         'INPUT': fix_geo_snci,
         'OVERLAY': fix_geo_sigef,
@@ -147,15 +147,15 @@ def consolidar_malhas_qgis(saida):
     result_diff = processing.run("native:difference", params_diff)
     snci_recortado = result_diff['OUTPUT']
 
-    print("Limpando resíduos topológicos (Slivers)...")
+    print("Cleaning topological residuals (Slivers)...")
     
-    # 3. Opcional: Filtrar polígonos irrelevantes gerados pelo recorte (ex: < 1m2)
-    # No QGIS, isso pode ser feito via seleção por expressão
+    # 3. Optional: Filter irrelevant polygons generated by the clip (e.g. < 1m2)
+    # In QGIS, this can be done via expression selection
     snci_recortado.setSubsetString("area($geometry) > 5")
 
-    print("Unificando camadas...")
+    print("Unifying layers...")
 
-    # 4. Mesclar as camadas: SIGEF (íntegro) + SNCI (apenas áreas não certificadas)
+    # 4. Merge the layers: SIGEF (intact) + SNCI (only non-certified areas)
     #outputFile = output
     params_merge = {
         'LAYERS': [layer_sigef, snci_recortado],
@@ -164,29 +164,29 @@ def consolidar_malhas_qgis(saida):
     }
     result_final = processing.run("native:mergevectorlayers", params_merge)['OUTPUT']
     
-    print("Processo concluído. Camada 'Malha_Consolidada_Final' adicionada.")
+    print("Process completed. Layer 'Malha_Consolidada_Final' added.")
     analisar_sobreposicao_otimizado(result_final,saida)
  
 
-# Exemplo de chamada (ajuste os caminhos para sua realidade):
-saida = input('Digite o arquivo de saida:')
+# Example call (adjust paths to your reality):
+saida = input('Enter the output file:')
 
-#Inicio do processamento
-print('Inicio do processamento',datetime.datetime.now())
+# Start of processing
+print('Start of processing',datetime.datetime.now())
 
-#Integração INCRA / SNCI
+# INCRA / SNCI Integration
 consolidar_malhas_qgis(saida)
 
-#Final do processamento
-print('Final do processamento', datetime.datetime.now())
+# End of processing
+print('End of processing', datetime.datetime.now())
 
-#Finalização Limpa
+# Clean Finalization
 qgs.exitQgis()
 ```
 
-### Código para processamentos dos dados do Cadastro Ambiental Rural (CAR)
+### Code for processing Rural Environmental Registry (CAR) data
 ```python
-#Importar módulos
+# Import modules
 from qgis.core import  QgsProject, QgsVectorLayer, QgsFeatureRequest, QgsFeature, QgsApplication,QgsDataSourceUri, QgsSpatialIndex,QgsGeometry
 from qgis import processing
 import sys
@@ -194,7 +194,7 @@ from qgis.analysis import QgsNativeAlgorithms
 import os
 import datetime
 
-# Configuração do Ambiente Standalone
+# Standalone Environment Configuration
 qgis_prefix = r'C:\Program Files\QGIS 3.xx\apps\qgis'
 QgsApplication.setPrefixPath(qgis_prefix, True)
 qgs = QgsApplication([], False)
@@ -206,35 +206,35 @@ import processing
 from processing.core.Processing import Processing
 Processing.initialize() 
 
-# 4. Adicionar os algoritmos nativos
+# 4. Add native algorithms
 QgsApplication.processingRegistry().addProvider(QgsNativeAlgorithms())
 
 
-#Salvar camadas excluidas 
+# Save excluded layers
 def salvar_camada_excluidos(lista_feicoes, campos, pasta_saida, nome_arquivo):
     """
-    Cria um GeoPackage para armazenar as feições que foram barradas em qualquer etapa.
+    Creates a GeoPackage to store features that were blocked at any stage.
     """
     if not lista_feicoes:
         return
 
-    #Definir o caminho completo
+    # Define the full path
     caminho_final = os.path.join(pasta_saida, nome_arquivo)
     
-    # 2. Criar uma camada temporária em memória com a mesma estrutura da camada original
-    # Usamos MultiPolygon porque é o padrão do CAR
-    uri = "MultiPolygon?crs=EPSG:4674" # Ou use o CRS da sua camada original
+    # 2. Create a temporary layer in memory with the same structure as the original layer
+    # We use MultiPolygon because it is the CAR standard
+    uri = "MultiPolygon?crs=EPSG:4674" # Or use the CRS of your original layer
     camada_temp = QgsVectorLayer(uri, "temp_excluidos", "memory")
     provider = camada_temp.dataProvider()
 
-    # 3. Adicionar os campos originais + o campo de motivo (caso ele não exista nos campos passados)
+    # 3. Add original fields + the reason field (in case it does not exist in the passed fields)
     provider.addAttributes(campos)
     camada_temp.updateFields()
 
-    # 4. Adicionar as feições à camada de memória
+    # 4. Add features to the memory layer
     provider.addFeatures(lista_feicoes)
 
-    # 5. Salvar a camada de memória em um arquivo GeoPackage no disco
+    # 5. Save the memory layer in a GeoPackage file on disk
     params = {
         'INPUT': camada_temp,
         'OUTPUT': caminho_final,
@@ -243,40 +243,40 @@ def salvar_camada_excluidos(lista_feicoes, campos, pasta_saida, nome_arquivo):
         'LAYER_OPTIONS': ''
     }
     
-    # native:savefeatures é o comando mais seguro para exportar arquivos no QGIS Standalone
+    # native:savefeatures is the safest command to export files in QGIS Standalone
     processing.run("native:savefeatures", params)
-    print(f"--> Arquivo de auditoria gerado: {nome_arquivo} ({len(lista_feicoes)} feições)")
+    print(f"--> Audit file generated: {nome_arquivo} ({len(lista_feicoes)} features)")
 
 
 def analisar_sobreposicao_car(layer,outfolder):
     
     if not os.path.exists(outfolder): os.makedirs(outfolder)
-    coluna_modulo = 'mod_fical_calc' # Certifique-se que este nome está correto no seu banco
+    coluna_modulo = 'mod_fical_calc' # Make sure this name is correct in your database
     
-    print(f"[{datetime.datetime.now().strftime('%H:%M:%S')}] Criando Índice Espacial e Cache...")
+    print(f"[{datetime.datetime.now().strftime('%H:%M:%S')}] Creating Spatial Index and Cache...")
     all_features = {f.id(): f for f in layer.getFeatures()}
     geom_cache = {f.id(): f.geometry() for f in all_features.values()}
     index = QgsSpatialIndex(layer.getFeatures())
     
     ids_com_sobreposicao = []
 
-    print(f"[{datetime.datetime.now().strftime('%H:%M:%S')}] Analisando tolerâncias de sobreposição...")
+    print(f"[{datetime.datetime.now().strftime('%H:%M:%S')}] Analyzing overlap tolerances...")
     for f_id, feat in all_features.items():
         geom = feat.geometry()
         area_original = geom.area()
         if area_original <= 0: continue
         
-        # Pega o valor do módulo fiscal do imóvel atual
+        # Gets the fiscal module value of the current property
         val_modulo = feat.attribute(coluna_modulo)
         if val_modulo is None:
             val_modulo = 0 
             
-        # Limiar de tolerância para considerar sobrepoisção do Imóvel do CAR
+        # Tolerance threshold to consider CAR Property overlap
         if val_modulo < 4.0:
             limite_tolerancia = 10.0
         elif 4.0 <= val_modulo <= 15.0:
             limite_tolerancia = 5.0
-        else: # Acima de 15
+        else: # Above 15
             limite_tolerancia = 3.0
         # -----------------------------------------
 
@@ -287,20 +287,20 @@ def analisar_sobreposicao_car(layer,outfolder):
             if c_id == f_id: continue
             other_geom = geom_cache[c_id]
             
-            # Só calcula intersecção real se houver toque
+            # Only calculates real intersection if there is contact
             if geom.intersects(other_geom):
                 intersection = geom.intersection(other_geom)
                 inter_area += intersection.area()
                 
-                # Otimização: Se já passou do limite, não precisa somar o resto
+                # Optimization: If it has already exceeded the limit, no need to sum the rest
                 if (inter_area / area_original) * 100 > limite_tolerancia:
                     break
         
         if (inter_area / area_original) * 100 > limite_tolerancia:
             ids_com_sobreposicao.append(f_id)
 
-    # --- 1. Exportar SEM Sobreposição (Aceitos dentro da tolerância) ---
-    print(f"Exportando CAR aceito (dentro da tolerância)...")
+    # --- 1. Export WITHOUT Overlap (Accepted within tolerance) ---
+    print(f"Exporting accepted CAR (within tolerance)...")
     path_sem = os.path.join(outfolder, 'car_aceito_tolerancia.gpkg')
     fids_sem = list(set(all_features.keys()) - set(ids_com_sobreposicao))
     
@@ -310,11 +310,11 @@ def analisar_sobreposicao_car(layer,outfolder):
     temp_sem.dataProvider().addFeatures([all_features[fid] for fid in fids_sem])
     processing.run("native:savefeatures", {'INPUT': temp_sem, 'OUTPUT': path_sem})
 
-    # --- 2. Processar COM Sobreposição (Recorte Hierárquico) ---
-    print(f"[{datetime.datetime.now().strftime('%H:%M:%S')}] Iniciando Recorte Hierárquico dos conflitos...")
+    # --- 2. Process WITH Overlap (Hierarchical Clipping) ---
+    print(f"[{datetime.datetime.now().strftime('%H:%M:%S')}] Starting Hierarchical Clipping of conflicts...")
    
-    # O restante do código de ordenação e recorte permanece igual para garantir a topologia
-    print(f"Ordenando {len(ids_com_sobreposicao)} imóveis para recorte...")
+    # The rest of the sorting and clipping code remains the same to ensure topology
+    print(f"Sorting {len(ids_com_sobreposicao)} properties for clipping...")
     
     feats_sob = [all_features[fid] for fid in ids_com_sobreposicao]
     feats_ordenadas = sorted(feats_sob, key=lambda f: f.attribute(coluna_modulo) or 999999)
@@ -327,14 +327,14 @@ def analisar_sobreposicao_car(layer,outfolder):
     processed_index = QgsSpatialIndex()
     processed_geoms = {}
 
-    print("Iniciando recorte hierárquico...")
+    print("Starting hierarchical clipping...")
     
     ids_excluidos_conflito = []
 
     for i, feat in enumerate(feats_ordenadas):
             geom_atual = feat.geometry()
             
-            # Busca apenas quem já foi processado e está perto
+            # Searches only for those already processed and nearby
             candidates = processed_index.intersects(geom_atual.boundingBox())
             for c_id in candidates:
                 geom_fixa = processed_geoms[c_id]
@@ -351,7 +351,7 @@ def analisar_sobreposicao_car(layer,outfolder):
                 feat.setGeometry(geom_atual)
                 layer_resultado.dataProvider().addFeatures([feat])
                 
-                # ADICIONA AO ÍNDICE para os próximos imóveis
+                # ADDS TO THE INDEX for the next properties
                 new_id = feat.id()
                 processed_index.addFeature(feat)
                 processed_geoms[new_id] = geom_atual
@@ -359,32 +359,32 @@ def analisar_sobreposicao_car(layer,outfolder):
                 
                     salvar_camada_excluidos(feicoes_excluidas, final_clean.fields(), outfolder, 'car_excluidos_grilagem.gpkg')
             if i % 500 == 0:
-                print(f"Processado: {i}/{len(feats_ordenadas)} imóveis.")
+                print(f"Processed: {i}/{len(feats_ordenadas)} properties.")
 
     processing.run("native:savefeatures", {'INPUT': layer_resultado, 'OUTPUT': path_com_recortado})
-    print(f"Processamento concluído. Tolerâncias aplicadas: <4MF:10%, 4-15MF:5%, >15MF:3%.")
+    print(f"Processing completed. Tolerances applied: <4MF:10%, 4-15MF:5%, >15MF:3%.")
 
 def processar_car_prioridade_atual(outfolder):
     
-    # 1. Carregar Camadas
+    # 1. Load Layers
     uri = QgsDataSourceUri()
     uri.setConnection("localhost", "5432", "postgis", "postgres", "123456")
 
     #uri.setDataSource("mfa", "11_base_cartografica_municipios", "geom")
     uri.setDataSource("mfa", "11_base_cartografica_municipios", "geom")
     layer_mun = QgsVectorLayer(uri.uri(), "municipio_PostGIS", "postgres")
-    print('Total de Municipios:',layer_mun.featureCount())
+    print('Total of Municipalities:',layer_mun.featureCount())
 
     uri.setDataSource("mfa", "10_malha_fundiaria_imoveis_rurais_car_calc", "geom")
     #uri.setSql("cod_estado = 'GO'")
     layer_car = QgsVectorLayer(uri.uri(), "car_PostGIS", "postgres")
-    print('Total de CARS:',layer_car.featureCount())
+    print('Total of CARs:',layer_car.featureCount())
     if not layer_car.isValid():
-        print("Erro ao carregar base CAR.")
+        print("Error loading CAR base.")
         return
 
-    # 2. Filtro Inicial (Status e Tipologia)
-    print("Filtrando Status e Tipologia...")
+    # 2. Initial Filter (Status and Typology)
+    print("Filtering Status and Typology...")
     query = (
         "NOT \"des_condic\" LIKE 'Suspenso%' AND "
         "NOT \"des_condic\" LIKE 'Cancelado%' AND "
@@ -393,9 +393,9 @@ def processar_car_prioridade_atual(outfolder):
     )
     layer_car.setSubsetString(query)
 
-    # 3. Ordenação por Data (Do mais recente para o mais antigo)
-    # Criamos uma camada temporária ordenada para que o 'Delete Duplicates' pegue o topo
-    print("Ordenando registros pelo campo...")
+    # 3. Sorting by Date (From newest to oldest)
+    # We create an ordered temporary layer so that the 'Delete Duplicates' gets the top
+    print("Sorting records by field...")
     expressao_composta = '"dat_atuali" DESC, "mod_fical_calc" ASC'
     layer_ordenada = processing.run("native:orderbyexpression", {
         'INPUT': layer_car,
@@ -404,43 +404,43 @@ def processar_car_prioridade_atual(outfolder):
         'NULLS_FIRST': False,
         'OUTPUT': 'memory:car_ordenado'
     })['OUTPUT']
-    print('Total de camadas ordenadas:',layer_ordenada.featureCount())
+    print('Total of sorted layers:',layer_ordenada.featureCount())
 
-    # 4. Corrigir Geometrias
+    # 4. Fix Geometries
     fix_geo = processing.run("native:fixgeometries", {
         'INPUT': layer_ordenada,
         'OUTPUT': 'memory:temp_fix'
     })['OUTPUT']
 
-    # 5. Remover Geometrias Duplicadas
-    # O QGIS mantém a primeira feição encontrada. Como ordenamos, ele manterá a MAIS ATUAL.
-    print("Removendo geometrias duplicadas (Mantendo a mais recente)...")
+    # 5. Remove Duplicate Geometries
+    # QGIS keeps the first feature found. Since we sorted, it will keep the MOST RECENT one.
+    print("Removing duplicate geometries (Keeping the most recent)...")
     no_double_geo = processing.run("native:deleteduplicategeometries", {
         'INPUT': fix_geo,
         'OUTPUT': 'memory:temp_no_double'
     })['OUTPUT']
-    print('Total de camadas não duplicadas:',no_double_geo.featureCount())
+    print('Total of non-duplicate layers:',no_double_geo.featureCount())
     
-    # 6. Remover Duplicados por Atributo (Mesmo COD_IMOVEL)
-    print("Removendo duplicados por Código de Imóvel...")
+    # 6. Remove Duplicates by Attribute (Same COD_IMOVEL)
+    print("Removing duplicates by Property Code...")
     final_clean = processing.run("native:removeduplicatesbyattribute", {
         'INPUT': no_double_geo,
         'FIELDS': ['cod_imovel'], 
         'OUTPUT': 'memory:car_limpo_final'
     })['OUTPUT']
-    print('Total de camadas não duplicadas por camada de imovel:',no_double_geo.featureCount())
+    print('Total of non-duplicate layers by property layer:',no_double_geo.featureCount())
     
 
-    # 7. Filtro de Área (Imóvel < Município)
-    print("Validando consistência de área com a malha municipal...")
+    # 7. Area Filter (Property < Municipality)
+    print("Validating area consistency with the municipal mesh...")
     
-    # 2. Join por Tabela (Muito mais rápido que o espacial)
-    #---------------------------------------------------------------------------------------Grilagem Digital---------------------------------
+    # 2. Join by Table (Much faster than spatial)
+    #---------------------------------------------------------------------------------------Digital Land Grabbing---------------------------------
    
-    print("Retirando Grilagem Digital...")
+    print("Removing Digital Land Grabbing...")
     municipios_area = {str(f['CD_MUN']).split(): f['AREA_KM2'] for f in layer_mun.getFeatures()}
     
-    #Lista dos imóveis excluidos e validos
+    # List of excluded and valid properties
     feicoes_validas = []
     feicoes_excluidas = []
     
@@ -457,15 +457,15 @@ def processar_car_prioridade_atual(outfolder):
             imovel.setAttribute(imovel.fieldNameIndex('motivo_excl'), 'Codigo Municipio Nao Encontrado')
             feicoes_excluidas.append(imovel) 
 
-    # Exportar logo os barrados por área/código
+    # Export immediately those blocked by area/code
     if feicoes_excluidas:
         salvar_camada_excluidos(feicoes_excluidas, final_clean.fields(), outfolder, 'car_excluidos_grilagem.gpkg')
     
     crs_authid = final_clean.crs().authid()
     uri = f"MultiPolygon?crs={crs_authid}"
 
-    # 2. Criar a camada em memória
-    # O nome "CAR_Validado" é como ela apareceria na legenda do QGIS
+    # 2. Create the layer in memory
+    # The name "CAR_Validado" is how it would appear in the QGIS legend
     camada_final_validada = QgsVectorLayer(uri, "CAR_Saneado_Grilagem", "memory")    
     provider = camada_final_validada.dataProvider()
     camada_final_validada.startEditing()
@@ -475,19 +475,17 @@ def processar_car_prioridade_atual(outfolder):
     camada_final_validada.commitChanges()
     provider = None
     
-    print("Iniciando análise de sobreposição espacial (Self-Intersection)...")
+    print("Starting spatial overlap analysis (Self-Intersection)...")
 
-    #----------------------------------------------------------------------------Análise de sobreposição
+    #----------------------------------------------------------------------------Overlap analysis
     analisar_sobreposicao_car(camada_final_validada,outfolder)
-    print('Finalizado.....')
+    print('Finished.....')
 
-# Exemplo: Certifique-se de usar o nome correto do campo de data do seu arquivo
-saida = input('Digite o arquivo de saida:')
-print('Incio do processamento dos imóveis do CAR...',datetime.datetime.now())
+# Example: Make sure to use the correct name of the date field of your file
+saida = input('Enter the output file:')
+print('Start of processing of CAR properties...',datetime.datetime.now())
 processar_car_prioridade_atual(saida)
-print('Fim do processamento dos imóveis do CAR',datetime.datetime.now())
-#Finalização Limpa
+print('End of processing of CAR properties',datetime.datetime.now())
+# Clean Finalization
 qgs.exitQgis()
 ```
-
-
