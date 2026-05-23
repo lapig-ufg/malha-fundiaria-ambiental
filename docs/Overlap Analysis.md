@@ -1,6 +1,6 @@
 # 05. Overlap Analysis
 
-This stage is responsible for identifying areas with spatial conflict — where two or more land tenure layers coexist — and objectively defining which class should prevail in the final mesh.
+This stage is responsible for identifying areas with spatial conflict — where two or more land tenure layers coexist — and objectively defining which class should prevail in the environmental land tenure final.
 ** **
 
 ## How it Works
@@ -14,7 +14,7 @@ This stage is responsible for identifying areas with spatial conflict — where 
 ** **
 ## Vector Refinement
 
-After generating the land tenure mesh in raster format, each original vector feature is compared with the dominant class in the final land tenure.
+After generating the land tenure data in raster format, each original vector feature is compared with the dominant class in the final land tenure.
 
 If more than 10% of the feature's area coincides with the same class in the raster, the vector is kept and adjusted, being clipped according to the limits defined by the enviromental land tenure dataset.
 
