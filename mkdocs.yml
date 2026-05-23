@@ -7,7 +7,7 @@ nav:
   - 'Home': 'index.md'
   - 'Data Ingestion': 'Data Ingestion.md'
   - 'Data Preprocessing': 'Data Preprocessing.md'
-  - 'Hierarchy of Land Tenure Layers': 'Hierarchy of Land Tenure Layers.md'
+  - 'Hierarchical of Land Tenure Layers': 'Hierarchy of Land Tenure Layers.md'
   - 'Layer Reclassification': 'Layer Reclassification.md'
   - 'Overlap Analysis': 'Overlap Analysis.md'
   - 'Environmental Integration': 'Environmental Integration.md'
