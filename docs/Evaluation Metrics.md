@@ -1,6 +1,6 @@
 # 07. Evaluation Metrics of Environmental Land Tenure
 
-This stage shows the methodological structure applied in the comparative evaluation of geometric and topological integrity between the spatial databases Environmental Land Tenure developed by LAPIG and Cartas da Terra (iGPP). In this analysis, the land tenure void areas of the Cartas da Terra (iGPP) Environmental land tenure were not accounted for.
+This stage shows the methodological structure applied in the comparative evaluation of geometric and topological integrity between the spatial databases Land Tenure developed by LAPIG and Cartas da Terra (iGPP). In this analysis, the land tenure void areas of the Cartas da Terra (iGPP) Environmental land tenure were not accounted for.
 
 ## Metrics used
 
