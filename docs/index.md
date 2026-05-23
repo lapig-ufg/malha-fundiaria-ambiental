@@ -33,4 +33,4 @@ For partnerships, academic questions, or suggestions, please contact us at [form
     * Construction of the Brazil Enviromental Land Tenure Dataset.
 
 
-To validate the mesh, access the [Project Repository on GitHub](https://github.com/lapig-ufg/malha-fundiaria-ambiental).
+To acess the codes in [Project Repository on GitHub](https://github.com/lapig-ufg/malha-fundiaria-ambiental).
