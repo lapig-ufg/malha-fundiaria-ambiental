@@ -3,7 +3,7 @@
 This stage is responsible for identifying areas with spatial conflict — where two or more polygons from different databases coexist — and defining which land tenure class should prevail in the final mesh.
 ** **
 
-![Figure 1 - Data Ingestion Flowchart](figuras/hierarquizacao_2.png)
+![Figure 1 - Data Ingestion Flowchart](figuras/fig5_en.png)
 
 
 ## AHP Method (Analytic Hierarchy Process)
