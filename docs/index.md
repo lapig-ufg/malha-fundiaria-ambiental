@@ -1,7 +1,7 @@
 # Brazil's Enviromental Land Tenure Dataset: Integrated Base for Territorial Analysis and Management
 
 ## About the Enviromental Land Tenure Dataset
-An integrated geospatial database that organizes and qualifies the land tenure and environmental structure of Brazil, connecting territorial data to support territorial management, analysis, and governance.
+An integrated geospatial database that organizes and qualifies the land tenure and environmental structure of Brazil, connecting territorial data to support territorial management, analysis, and governance. Access the plataform with the data [here](https://malhafundiaria.lapig.iesa.ufg.br/map) 
 
 ## Mission
 Transforming territorial data into reliable information for decision-making
