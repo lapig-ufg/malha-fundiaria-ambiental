@@ -13,7 +13,7 @@ In this stage, the data integrated into the PostgreSQL database undergo geometri
 
 
 ## Flowchart
-![Figure 2 - Preprocessing Flowchart](figuras/pre_processamento_2.png)
+![Figure 2 - Preprocessing Flowchart](figuras/fig4_en.png)
 
 Figure 2 - Preprocessing Flowchart
 
