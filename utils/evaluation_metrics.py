@@ -1,6 +1,5 @@
 """
-Módulo: diagnostico_malha_fundiaria.py
-Autor: DevScript (Senior Geoprocessamento & AI Consultant)
+Módulo: evalution_metrics.py
 Descrição: Processamento escalável via DuckDB Spatial para avaliação do iGPP 2025.
            Compara duas bases fundiárias agregando resultados por Brasil e Estados,
            gerando tabelas analíticas e gráficos comparativos de qualidade geométrica.
