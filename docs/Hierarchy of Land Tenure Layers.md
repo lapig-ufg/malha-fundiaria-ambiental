@@ -30,7 +30,7 @@ Note: The values 2, 4, 6, and 8 are used when there is doubt in the effective de
 ## Criteria Comparison Matrix
 
 ### Table 1: Criteria Weight Matrix
-| Criteria | Legal Security | Geometric Precision | Overlap | Stability |
+| Criteria | Legal Security | Geometric Precision | Overlap | Domain Stability |
 | :--- | :--- | :--- | --- | :--- |
 | Legal Security | 1 | 3 | 5 | 7 |
 | Geometric Precision | 1/3 | 1 | 3 | 5 |
@@ -41,7 +41,7 @@ Note: The values 2, 4, 6, and 8 are used when there is doubt in the effective de
 From the normalization of the matrix, the final weights of each criterion were obtained:
 
 ### Table 2: Normalized Criteria Weight Matrix
-| Criteria | Legal Security | Geometric Precision | Overlap | Stability | Average (Weight) |
+| Criteria | Legal Security | Geometric Precision | Overlap | Domain Stability | Average (Weight) |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | Legal Security | 0.599 | 0.662 | 0.536 | 0.438 | 0.56 |
 | Geometric Precision | 0.198 | 0.221 | 0.322 | 0.313 | 0.26 |
