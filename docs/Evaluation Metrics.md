@@ -27,7 +27,7 @@ Demonstrates the accumulated volume of null or microscopic geometries divided by
 ![](figuras/01_zerados.png)
 
 
-### Chart 2: Quantity of Bad Polygons (Slivers) by UF and land tenure Type
+### Chart 2: Quantity of Bad Polygons (Slivers) by State and land tenure Type
 Noise level, showing the structural behavior of each institution by state
 
 ![](figuras/02_slivers.png)
