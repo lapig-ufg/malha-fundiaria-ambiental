@@ -1,4 +1,4 @@
-# 03. Hierarchy of Land Tenure Layers
+# 03. Hierarchical of Land Tenure Layers
 
 This stage is responsible for identifying areas with spatial conflict — where two or more polygons from different databases coexist — and defining which land tenure class should prevail in the final mesh.
 ** **
