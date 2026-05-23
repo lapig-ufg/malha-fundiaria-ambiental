@@ -11,7 +11,7 @@ In this stage, the land tenure layers are reclassified based on the hierarchy de
 ![Figure 1 - Data Ingestion Flowchart](figuras/fig6_en.png)
 
 ### Table 3 - Calculation of the Hierarchy of Land Tenure Layers
-| Land Tenure Class | Legal Security | Geometric Precision | Overlap | Stability | Global Weight (AHP) | Hierarchical Level |
+| Land Tenure Class | Legal Security | Geometric Precision | Overlap | Domain Stability | Global Weight (AHP) | Hierarchical Level |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
 | Water body | 9 | 9 | 9 | 9 | 9.00 | 1 |
 | Urban Grid | 9 | 9 | 9 | 9 | 9.00 | 2 |
