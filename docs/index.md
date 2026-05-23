@@ -13,7 +13,7 @@ We believe that efficient territorial management begins with reliable data. When
 ## How it is done
 From data integration to the territorial product
 
-![Figure 4 - Environmental Integration Flowchart](figuras/como_e_feito_2.png)
+![Figure 4 - Environmental Integration Flowchart](figuras/fig1_en.png)
 
 ## What the data enables
 
