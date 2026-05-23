@@ -13,7 +13,7 @@ The data are organized into four main groups:
 
 ** **
 
-![Figure 1 - Data Ingestion Flowchart](figuras/ingestao_de_dados_2.png)
+![Figure 1 - Data Ingestion Flowchart](figuras/fig3_en.png)
 
 
 ## Data Sources
