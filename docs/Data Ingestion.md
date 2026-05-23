@@ -49,5 +49,15 @@ The data are organized into four main groups:
 | Legal Reserve (RL) | SICAR | [https://consultapublica.car.gov.br/publico/imoveis/index](https://consultapublica.car.gov.br/publico/imoveis/index) |
 
 
+The land tenure layers—Indigenous Lands, Conservation Units e Quilombola Lands filtered in the original database to separate them by status.
+| Layers | Field | Filter |
+| :--- | :--- | :--- |
+| Indigenous Territories - homologated| fase_ti | fase_ti in ('Homologada','Regularizada')|
+| Indigenous Territories - non-homologated| fase_ti |not fase_ti in ('Homologada','Regularizada')|
+| Quilombola Territories  - declared| fase| fase not in ('Contestação','EDITAL','RTID','RTID - CONTRADITORIO') and is not NULL| 
+| Quilombola Territories - non-declared| fase | fase in ('Contestação','EDITAL','RTID','RTID - CONTRADITORIO') and is not NULL | 
+| Conservation Units  - Sustainable Use| grupo| grupo = 'Uso Sustentável'| 
+| Conservation Units  - Strictly Protected| | grupo = 'Proteção Integral'| 
+
 
 The integration of these bases constitutes the starting point for the following processing stages, where topological corrections, overlap resolution, and integration with environmental assets are performed.
