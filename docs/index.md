@@ -25,7 +25,7 @@ The product is developed by the Remote Sensing and Geoprocessing Laboratory (LAP
 
 ## Contact
 
-For partnerships, academic questions, or suggestions, please contact us at lapig.ufg@gmail.com
+For partnerships, academic questions, or suggestions, please contact us at [form](https://docs.google.com/forms/d/e/1FAIpQLSdGjUFXv4dEVclmEPg-lZT02F7RR4OHW3A0i2ttohDfx68BzA/viewform)
 
 ## Version History
 
