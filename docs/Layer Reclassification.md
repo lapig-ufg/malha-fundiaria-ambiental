@@ -4,7 +4,7 @@ In this stage, the land tenure layers are reclassified based on the hierarchy de
 
 ## How it Works
 01. **Calculation of layer weights**: For each land tenure class, grades are assigned for the defined criteria (legal security, geometric precision, overlap, and stability), following the Saaty scale. These grades are weighted by the weights derived from the AHP, resulting in a global weight per class.
-02. **Definition of the hierarchy**: The classes are ordered based on the global weight, defining the priority level of each one in the land tenure mesh.
+02. **Definition of the hierarchy**: The classes are ordered based on the global weight, defining the priority level of each one in the land tenure class.
 03. **Assignment of pixel values:** Each land tenure class receives a numerical value corresponding to its hierarchical level, allowing its differentiation in map algebra operations.
 04. **Generation of reclassified layers:** Raster images are generated for each land tenure class, in which the pixel value directly represents its hierarchical priority.
 
