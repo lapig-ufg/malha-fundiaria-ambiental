@@ -17,7 +17,7 @@ From data integration to the territorial product
 
 ## What the data enables
 
-![Figure 4 - Environmental Integration Flowchart](figuras/o_que_o_dado_permite_2.png)
+![Figure 4 - Environmental Integration Flowchart](figuras/fig2_en.png)
 
 ## Who develops it
 
