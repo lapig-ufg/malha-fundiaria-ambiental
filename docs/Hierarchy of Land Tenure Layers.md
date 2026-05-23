@@ -35,7 +35,7 @@ Note: The values 2, 4, 6, and 8 are used when there is doubt in the effective de
 | Legal Security | 1 | 3 | 5 | 7 |
 | Geometric Precision | 1/3 | 1 | 3 | 5 |
 | Overlap | 1/5 | 1/3 | 1 | 3 |
-| Stability | 1/7 | 1/5 | 1/3 | 1 |
+| Domain Stability | 1/7 | 1/5 | 1/3 | 1 |
 
 ## Normalized Weights for each layer
 From the normalization of the matrix, the final weights of each criterion were obtained:
@@ -46,6 +46,6 @@ From the normalization of the matrix, the final weights of each criterion were o
 | Legal Security | 0.599 | 0.662 | 0.536 | 0.438 | 0.56 |
 | Geometric Precision | 0.198 | 0.221 | 0.322 | 0.313 | 0.26 |
 | Overlap | 0.120 | 0.073 | 0.107 | 0.188 | 0.12 |
-| Stability | 0.084 | 0.044 | 0.035 | 0.063 | 0.06 |
+| Domain Stability | 0.084 | 0.044 | 0.035 | 0.063 | 0.06 |
 
 ** **
