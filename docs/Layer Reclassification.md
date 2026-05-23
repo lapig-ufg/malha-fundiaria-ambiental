@@ -34,7 +34,9 @@ In this stage, the land tenure layers are reclassified based on the hierarchy de
 At the end of the conversion, 14 images of each land tenure layer were generated, where the pixel value is equal to its assigned hierarchical level.
 
 ### Code for conversion and analysis of the Hierarchy of land tenure layers
-
+<details>
+<summary>Tips for collapsed sections</summary>
+    
 ```python
 # Import modules
 from qgis import processing
@@ -228,3 +230,5 @@ def selectedFeature_v2(path_raster, path_vetor, ordem_prioridade, path_output):
     log.close()
     print(f"\n[{datetime.datetime.now()}] Completed!")
 ```
+
+</details>
