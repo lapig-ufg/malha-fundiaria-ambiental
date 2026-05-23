@@ -8,7 +8,7 @@ In this stage, the land tenure layers are reclassified based on the hierarchy de
 03. **Assignment of pixel values:** Each land tenure class receives a numerical value corresponding to its hierarchical level, allowing its differentiation in map algebra operations.
 04. **Generation of reclassified layers:** Raster images are generated for each land tenure class, in which the pixel value directly represents its hierarchical priority.
 
-![Figure 1 - Data Ingestion Flowchart](figuras/reclassificacao_das_camadas_2.png)
+![Figure 1 - Data Ingestion Flowchart](figuras/fig6_en.png)
 
 ### Table 3 - Calculation of the Hierarchy of Land Tenure Layers
 | Land Tenure Class | Legal Security | Geometric Precision | Overlap | Stability | Global Weight (AHP) | Hierarchical Level |
