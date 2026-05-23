@@ -5,16 +5,16 @@ This stage is responsible for identifying areas with spatial conflict — where 
 
 ## How it Works
 
-01. **Raster aggregation:** The consolidation of the layers is performed through map algebra, applying a pixel-by-pixel minimum operation among all raster images. Since pixel values represent the land tenure hierarchy, the lowest value corresponds to the highest priority class, being selected to compose the final mesh.
-02. **Generation of the integrated mesh:** The result of the aggregation is a single continuous raster, in which each pixel represents the dominant land tenure class, without overlaps or gaps.
+01. **Raster aggregation:** The consolidation of the layers is performed through map algebra, applying a pixel-by-pixel minimum operation among all raster images. Since pixel values represent the land tenure hierarchy, the lowest value corresponds to the highest priority class, being selected to compose the final land tenure.
+02. **Generation of the integrated land tenure:** The result of the aggregation is a single continuous raster, in which each pixel represents the dominant land tenure class, without overlaps or gaps.
 
 ** **
 
-![Figure 1 - Data Ingestion Flowchart](figuras/analise_sobreposicao_2.png)
+![Figure 1 - Data Ingestion Flowchart](figuras/fig7_en.png)
 ** **
 ## Vector Refinement
 
-After generating the land tenure mesh in raster format, each original vector feature is compared with the dominant class in the final mesh.
+After generating the land tenure mesh in raster format, each original vector feature is compared with the dominant class in the final land tenure.
 
 If more than 10% of the feature's area coincides with the same class in the raster, the vector is kept and adjusted, being clipped according to the limits defined by the enviromental land tenure dataset.
 
