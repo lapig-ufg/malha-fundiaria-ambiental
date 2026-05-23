@@ -24,7 +24,9 @@ Figure 2 - Preprocessing Flowchart
 Figure 3 - Example of area inconsistencies
 
 ### Code for processing INCRA data
+<details>
 
+<summary>Tips for collapsed sections</summary>
 ```python
 # Import modules
 from qgis.core import  QgsProject, QgsVectorLayer, QgsFeatureRequest, QgsFeature, QgsApplication,QgsDataSourceUri, QgsSpatialIndex,QgsGeometry,QgsField
@@ -183,8 +185,10 @@ print('End of processing', datetime.datetime.now())
 # Clean Finalization
 qgs.exitQgis()
 ```
-
+</details>
 ### Code for processing Rural Environmental Registry (CAR) data
+<details>
+<summary>Tips for collapsed sections</summary>
 ```python
 # Import modules
 from qgis.core import  QgsProject, QgsVectorLayer, QgsFeatureRequest, QgsFeature, QgsApplication,QgsDataSourceUri, QgsSpatialIndex,QgsGeometry
@@ -489,3 +493,4 @@ print('End of processing of CAR properties',datetime.datetime.now())
 # Clean Finalization
 qgs.exitQgis()
 ```
+</details>
