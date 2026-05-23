@@ -8,7 +8,7 @@ In this stage, the data integrated into the PostgreSQL database undergo geometri
 02. **Removal of duplicates:** Duplicate records are identified and removed, keeping the most recent record.
 03. **Removal of inactive records and special areas:** Properties with "Cancelled" or "Suspended" status are excluded, as well as categories that have more reliable representation in other official databases, such as special areas.
 04. **Exclusion of area inconsistencies:** CAR properties with an area equal to or greater than the area of the municipality are removed, avoiding distortions associated with digital land grabbing.
-05. **Overlap removal:** Overlaps are resolved by prioritizing the most recent record and making spatial adjustments in relation to the INCRA (SIGEF/SNCI) and CAR databases. Small properties are prioritized over large ones, with feature clipping.
+05. **Overlap removal:** Overlaps are resolved by prioritizing the most recent record and making spatial adjustments in relation to the INCRA (SIGEF/SNCI) and CAR databases.To evaluate the CAR (Rural Environmental Registry) data with and without overlap, it was assumed that a CAR property is considered without overlap if it meets the following criteria: up to 4 fiscal modules with up to 10% overlap; between 4 and 15 fiscal modules with up to 5% overlap; and above 15 fiscal modules with up to 3% overlap. Properties exceeding these thresholds were classified as having an overlap. Small properties are prioritized over large ones, with feature clipping.
 06. **Rasterization:** All layers are converted to raster format with a 10-meter pixel, compatible with a 1:25,000 scale, allowing spatial standardization and the application of the subsequent analysis stages.
 
 
