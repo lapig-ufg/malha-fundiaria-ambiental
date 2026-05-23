@@ -7,7 +7,7 @@ O material apresenta o desenvolvimento de um algoritmo avançado voltado para a 
 
 O algoritmo de malha fundiária ambiental é composto por cinco etapas principais, conforme detalhado nos documentos:
 
-* **1 - Ingestão dos Dados:** Consiste na coleta, organização e download das bases fundiárias, abrangendo territórios sociais e de proteção, reforma agrária e imóveis rurais privados.
+* **1 - Data Ingestion:** Collection and organization of land and territorial data, including private properties, indigenous lands, and conservation units.
 
 * **2 - Pré-processamento de dados:** Inclui a correção topológica para eliminar inconsistências geométricas, reprojeção das camadas, filtragem (como a exclusão de imóveis com status cancelado ou suspenso no CAR) e resolução de duplicidades e sobreposições.
 
