@@ -1,8 +1,12 @@
 site_name: Doc - Environmental Land Tenure
 site_author: Bernard Silva de Oliveira
+
 theme:
   name: material
- 
+
+repo_name: LAPIG-UFG/Environmental-LandTenure 
+repo_url: https://github.com/lapig-ufg/malha-fundiaria-ambiental
+
 nav:
   - 'Home': 'index.md'
   - 'Data Ingestion': 'Data Ingestion.md'
