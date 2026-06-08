@@ -16,3 +16,10 @@ nav:
   - 'Overlap Analysis': 'Overlap Analysis.md'
   - 'Environmental Integration': 'Environmental Integration.md'
   - 'Evaluation Metrics': 'Evaluation Metrics.md'
+
+markdown_extensions:
+  - attr_list
+  - md_in_html
+  - pymdownx.blocks.caption
+  - pymdownx.arithmatex:
+      generic: true
