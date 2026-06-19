@@ -3,6 +3,9 @@ site_author: Bernard Silva de Oliveira
 
 theme:
   name: material
+  # Opcional: Ativa suporte a SPA e carregamento instantâneo caso queira performance de Big Data na doc
+  features:
+    - navigation.instant 
 
 repo_name: LAPIG-UFG/Environmental-LandTenure 
 repo_url: https://github.com/lapig-ufg/malha-fundiaria-ambiental
@@ -16,6 +19,11 @@ nav:
   - 'Overlap Analysis': 'Overlap Analysis.md'
   - 'Environmental Integration': 'Environmental Integration.md'
   - 'Evaluation Metrics': 'Evaluation Metrics.md'
+
+# CRUCIAL: Injeção dos scripts do MathJax para interpretar o Arithmatex
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
 
 markdown_extensions:
   - attr_list
