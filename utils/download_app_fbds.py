@@ -14,7 +14,7 @@ def normalizar_nome(txt):
     
 def baixar_arquivos_fbds(codigo_ibge:str, folder:str,estado:str, municipio:str):
     # URL da pasta onde os arquivos estão localizados
-    url_pasta = f"https://geo.fbds.org.br/{estado}/{municipio}/HIDROGRAFIA/"
+    url_pasta = f"https://geo.fbds.org.br/{estado}/{municipio}/APP/"
     prefixo = f"{estado}_{codigo_ibge}_RIOS_SIMPLES"
     
     # Pasta local onde os arquivos serão salvos
