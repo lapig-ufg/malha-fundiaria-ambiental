@@ -49,7 +49,7 @@ The data are organized into four main groups:
 | Legal Reserve (RL) | SICAR | [https://consultapublica.car.gov.br/publico/imoveis/index](https://consultapublica.car.gov.br/publico/imoveis/index) |
 
 
-The land tenure layers—Indigenous Lands, Conservation Units, Quilombola Lands, Public Land Forests (FPND) and Military area filtered in the original database to separate them by status (iGPP,2025).
+The land tenure layers—Indigenous Lands, Conservation Units, Quilombola Lands, Public Land Forests (FPND) and Military area filtered in the original database to separate them by status (iGPP,2025a).
 
 | Layers | Field | Filter |
 | :--- | :--- | :--- |
