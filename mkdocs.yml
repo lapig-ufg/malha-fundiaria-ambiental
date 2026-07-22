@@ -19,6 +19,7 @@ nav:
   - 'Overlap Analysis': 'Overlap Analysis.md'
   - 'Environmental Integration': 'Environmental Integration.md'
   - 'Evaluation Metrics': 'Evaluation Metrics.md'
+  - 'Reference': 'Reference.md'
 
 # CRUCIAL: Injeção dos scripts do MathJax para interpretar o Arithmatex
 extra_javascript:
