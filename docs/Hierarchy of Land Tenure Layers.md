@@ -10,7 +10,7 @@ This stage is responsible for identifying areas with spatial conflict — where 
 
 The resolution of overlaps is performed using the AHP (Analytic Hierarchy Process) multicriteria method, which allows assigning relative weights to the different land tenure layers based on technical criteria.
 
-Four main criteria were considered:
+Four main criteria were considered (Freitas et al., 2018):
 
 1. **Legal Security:** Degree of legal backing and formal recognition of the layer
 2. **Geometric Precision:** Quality and spatial accuracy of the data
