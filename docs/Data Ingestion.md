@@ -1,6 +1,6 @@
 # 01. Data Ingestion
 
-This stage consists of the acquisition, organization, and storage of the main land tenure and environmental databases used in the construction of the Enviromental Land Tenure Dataset. The data are obtained from official sources and integrated into a structured **PostgreSQL** database environment, ensuring standardization and traceability.
+This stage consists of the acquisition, organization, and storage of the main land tenure and environmental databases used in the construction of the Enviromental Land Tenure Dataset. The data are obtained from official sources and integrated into a structured **PostgreSQL** database environment, ensuring standardization and traceability.(iGPP, 2025)
 
 ## Data Structure
 
