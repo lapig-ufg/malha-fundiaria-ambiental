@@ -2,7 +2,8 @@
 
 CERIGNONI, Felipe. **Nota técnica: malha CAR livre de sobreposição**. Piracicaba: Imaflora, set. 2023.
 
-FREITAS, Flavio L. M.; ENGLUND, Oskar; SPAROVEK, Gerd; BERNDES, Göran; GUIDOTTI, Vinicius; PINTO, Luís F. G.; MÖRTBERG, Ulla. Who owns the Brazilian carbon? **Global Change Biology**, v. 24, n. 5, p. 2129-2142, 2018. DOI: 10.1111/gcb.14011.
+FREITAS, F. L. M.; GUIDOTTI, V.; SPAROVEK, G.; HAMAMURA, C. **Nota técnica: Malha fundiária do Brasil, v.1812.**
+In: Atlas - A Geografia da Agropecuária Brasileira, 2018. Disponível em: www.imaflora.org/atlasagropecuario
 
 INSTITUTO PARA GOVERNANÇA TERRITORIAL E POLÍTICAS PÚBLICAS (iGPP). **Malha Fundiária: nota técnica 2025**. 2. ed. Piracicaba: iGPP, 2025.
 
