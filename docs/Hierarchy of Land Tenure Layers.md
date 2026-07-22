@@ -18,7 +18,7 @@ Four main criteria were considered (Freitas et al., 2018):
 4. **Domain Stability:** Permanence and historical consolidation of land occupation
 
 ## Evaluation Scale (Saaty)
-The weights were defined based on the Saaty scale (1 to 9), used for pairwise comparisons:
+The weights were defined based on the Saaty scale (1 to 9), used for pairwise comparisons (Saaty, 1987):
 
 * **Weight 1 - Equal Importance:** The two activities contribute equally to the objective.
 * **Weight 3 - Moderate Importance:** Experience and judgment slightly favor one activity over the other.
