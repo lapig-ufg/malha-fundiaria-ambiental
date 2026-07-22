@@ -1,4 +1,4 @@
-# Reference
+# References
 
 CERIGNONI, Felipe. **Nota técnica: malha CAR livre de sobreposição**. Piracicaba: Imaflora, set. 2023.
 
