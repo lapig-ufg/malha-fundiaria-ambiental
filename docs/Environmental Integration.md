@@ -32,4 +32,4 @@ The process results in three main subproducts:
 
 * Final Environmental Land Tenure Class (vector): Consolidated vector structure (hard class)
 * Final Environmental Land Tenure Class (raster): Raster representation of the land tenure (hard class)
-* Overlap dataset (raster): Raster with the number of overlaps per pixel
+<!-- * Overlap dataset (raster): Raster with the number of overlaps per pixel -->
