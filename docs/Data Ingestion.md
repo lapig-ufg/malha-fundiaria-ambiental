@@ -1,6 +1,6 @@
 # 01. Data Ingestion
 
-This stage consists of the acquisition, organization, and storage of the main land tenure and environmental databases used in the construction of the Enviromental Land Tenure Dataset. The data are obtained from official sources and integrated into a structured **PostgreSQL** database environment, ensuring standardization and traceability.(iGPP, 2025)
+This stage consists of the acquisition, organization, and storage of the main land tenure and environmental databases used in the construction of the Enviromental Land Tenure Dataset. The data are obtained from official sources and integrated into a structured **PostgreSQL** database environment, ensuring standardization and traceability (iGPP, 2025).
 
 ## Data Structure
 
@@ -49,7 +49,7 @@ The data are organized into four main groups:
 | Legal Reserve (RL) | SICAR | [https://consultapublica.car.gov.br/publico/imoveis/index](https://consultapublica.car.gov.br/publico/imoveis/index) |
 
 
-The land tenure layers—Indigenous Lands, Conservation Units, Quilombola Lands, Public Land Forests (FPND) and Military area filtered in the original database to separate them by status.
+The land tenure layers—Indigenous Lands, Conservation Units, Quilombola Lands, Public Land Forests (FPND) and Military area filtered in the original database to separate them by status (iGPP,2025).
 
 | Layers | Field | Filter |
 | :--- | :--- | :--- |
