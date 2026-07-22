@@ -1,0 +1,1229 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Bernard Silva de Oliveira">
+      
+      
+      
+        <link rel="prev" href="../Data%20Ingestion/">
+      
+      
+        <link rel="next" href="../Hierarchy%20of%20Land%20Tenure%20Layers/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Data Preprocessing - Doc - Environmental Land Tenure</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#02-data-preprocessing" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Doc - Environmental Land Tenure" class="md-header__button md-logo" aria-label="Doc - Environmental Land Tenure" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Doc - Environmental Land Tenure
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Data Preprocessing
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/lapig-ufg/malha-fundiaria-ambiental" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    LAPIG-UFG/Environmental-LandTenure
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Doc - Environmental Land Tenure" class="md-nav__button md-logo" aria-label="Doc - Environmental Land Tenure" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Doc - Environmental Land Tenure
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/lapig-ufg/malha-fundiaria-ambiental" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    LAPIG-UFG/Environmental-LandTenure
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Data%20Ingestion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Ingestion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Preprocessing
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Preprocessing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flowchart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flowchart
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-of-area-inconsistencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example of area inconsistencies
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Example of area inconsistencies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#code-for-processing-incra-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Code for processing INCRA data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-for-processing-rural-environmental-registry-car-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Code for processing Rural Environmental Registry (CAR) data
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Hierarchy%20of%20Land%20Tenure%20Layers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hierarchical of Land Tenure Layers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Layer%20Reclassification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Layer Reclassification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Overlap%20Analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overlap Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Environmental%20Integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environmental Integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Evaluation%20Metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evaluation Metrics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    References
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flowchart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flowchart
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-of-area-inconsistencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example of area inconsistencies
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Example of area inconsistencies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#code-for-processing-incra-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Code for processing INCRA data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-for-processing-rural-environmental-registry-car-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Code for processing Rural Environmental Registry (CAR) data
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="02-data-preprocessing">02. Data Preprocessing</h1>
+<p>In this stage, the data integrated into the PostgreSQL database undergo geometric corrections and filtering, with the aim of ensuring spatial consistency, feature integrity, and reliability in subsequent processes.</p>
+<h2 id="how-it-works">How it Works</h2>
+<ol>
+<li><strong>Topological Correction and Reprojection:</strong> Geometric inconsistencies are eliminated and all layers are reprojected to a standard metric system (ESRI:102033 — Albers Equal Area Conic).</li>
+<li><strong>Removal of duplicates:</strong> Duplicate records are identified and removed, keeping the most recent record.</li>
+<li><strong>Removal of inactive records and special areas:</strong> Properties with "Cancelled" or "Suspended" status are excluded, as well as categories that have more reliable representation in other official databases, such as special areas.</li>
+<li><strong>Exclusion of area inconsistencies:</strong> CAR properties with an area equal to or greater than the area of the municipality are removed, avoiding distortions associated with digital land grabbing.</li>
+<li><strong>Overlap removal:</strong> Overlaps are resolved by prioritizing the most recent record and making spatial adjustments in relation to the INCRA (SIGEF/SNCI) and CAR databases.To evaluate the CAR (Rural Environmental Registry) data with and without overlap, it was assumed that a CAR property is considered without overlap if it meets the following criteria: up to 4 fiscal modules with up to 10% overlap; between 4 and 15 fiscal modules with up to 5% overlap; and above 15 fiscal modules with up to 3% overlap. Properties exceeding these thresholds were classified as having an overlap. Small properties are prioritized over large ones, with feature clipping (iGPP, 2025b).</li>
+<li><strong>Rasterization:</strong> All layers are converted to raster format with a 10-meter pixel, compatible with a 1:25,000 scale, allowing spatial standardization and the application of the subsequent analysis stages.This resolution differs from the 30-meter pixel adopted in the original raster model (iGPP, 2025a), and was adapted here to allow higher spatial precision.</li>
+</ol>
+<h2 id="flowchart">Flowchart</h2>
+<p><img alt="Figure 2 - Preprocessing Flowchart" src="../figuras/fig4_en.png" /></p>
+<p>Figure 2 - Preprocessing Flowchart</p>
+<h2 id="example-of-area-inconsistencies">Example of area inconsistencies</h2>
+<p><img alt="Figure 3 - Example of Digital Land Grabbing" src="../figuras/grilagem_digital.png" /></p>
+<p>Figure 3 - Example of area inconsistencies</p>
+<h3 id="code-for-processing-incra-data">Code for processing INCRA data</h3>
+<details>
+<summary>Tips for collapsed sections</summary>
+
+
+<pre><code class="language-python"># Import modules
+from qgis.core import  QgsProject, QgsVectorLayer, QgsFeatureRequest, QgsFeature, QgsApplication,QgsDataSourceUri, QgsSpatialIndex,QgsGeometry,QgsField
+from qgis import processing
+import sys
+from qgis.analysis import QgsNativeAlgorithms
+import os
+from PyQt5.QtCore import QVariant
+import glob
+import shutil
+import time
+import datetime
+
+# Standalone Environment Configuration
+qgis_prefix = r'C:\Program Files\QGIS 3.xx\apps\qgis'
+QgsApplication.setPrefixPath(qgis_prefix, True)
+qgs = QgsApplication([], False)
+qgs.initQgis()
+
+sys.path.append(r'C:\PROGRA~1\QGIS34~1.4\apps\qgis\python\plugins')
+
+import processing
+from processing.core.Processing import Processing
+Processing.initialize() 
+
+# 4. Add native algorithms
+QgsApplication.processingRegistry().addProvider(QgsNativeAlgorithms())
+
+def analisar_sobreposicao_otimizado(layer_path, saida):
+
+    #print(f&quot;Reading file: {os.path.basename(layer_path)}&quot;)
+    layer = layer_path # QgsVectorLayer(layer_path, &quot;camada_entrada&quot;, &quot;memory&quot;)
+
+    # 1. We load the features and already sort them by area (Smaller -&gt; Priority)
+    features_ordenadas = sorted([f for f in layer.getFeatures()], key=lambda f: f.geometry().area())
+
+    layer_resultado = QgsVectorLayer(f&quot;Polygon?crs={layer.crs().authid()}&quot;, &quot;resultado&quot;, &quot;memory&quot;)
+    layer_resultado.dataProvider().addAttributes(layer.fields())
+    layer_resultado.updateFields()
+
+    # 2. DYNAMIC SPATIAL INDEX
+    # Instead of a static list, we use the index to filter candidates for clipping
+    index = QgsSpatialIndex()
+
+    # Dictionary to retrieve processed geometries via ID
+    processed_geoms = {} 
+
+    print(&quot;Starting hierarchical clipping with spatial filter...&quot;)
+
+    #with edit(layer_resultado): # Use of the context manager for block commit
+
+    for i, feat in enumerate(features_ordenadas):
+            geom_atual = feat.geometry()
+
+            # SPATIAL SEARCH: Gets only IDs of geometries that intersect the bounding box of the current one
+            candidate_ids = index.intersects(geom_atual.boundingBox())
+
+            for c_id in candidate_ids:
+                geom_fixa = processed_geoms[c_id]
+                if geom_atual.intersects(geom_fixa):
+                    geom_atual = geom_atual.difference(geom_fixa)
+                    if geom_atual.isEmpty():
+                       break
+
+            if not geom_atual.isEmpty() and geom_atual.area() &gt; 1.0:
+                feat.setGeometry(geom_atual)
+                layer_resultado.dataProvider().addFeatures([feat])
+
+                # ADDS TO THE INDEX for the next properties
+                new_id = feat.id()
+                index.addFeature(feat)
+                processed_geoms[new_id] = geom_atual
+
+            if i % 500 == 0:
+                print(f&quot;Processed: {i}/{len(features_ordenadas)} properties. Stable memory.&quot;)
+
+    processing.run(&quot;native:savefeatures&quot;, {'INPUT': layer_resultado, 'OUTPUT': saida})
+
+
+def consolidar_malhas_qgis(saida):
+    &quot;&quot;&quot;
+    Uses the QGIS processing engine to prioritize the SIGEF mesh.
+    &quot;&quot;&quot;
+    # Load layers
+    uri = QgsDataSourceUri()
+    uri.setConnection(&quot;localhost&quot;, &quot;5432&quot;, &quot;postgis&quot;, &quot;postgres&quot;, &quot;123456&quot;)    
+
+    uri.setDataSource(&quot;mfa&quot;, &quot;13_malha_fundiaria_gleba_publica_sigef&quot;, &quot;geom&quot;)
+    layer_sigef = QgsVectorLayer(uri.uri(), &quot;SIGEF_PostGIS&quot;, &quot;postgres&quot;)
+
+    uri.setDataSource(&quot;mfa&quot;, &quot;13_malha_fundiaria_gleba_publica_snci&quot;, &quot;geom&quot;)
+    layer_snci = QgsVectorLayer(uri.uri(), &quot;SNCI_PostGIS&quot;, &quot;postgres&quot;)
+
+
+    print('Fixing SIGEF geometry')
+    fix_geo_sigef = processing.run(&quot;native:fixgeometries&quot;, {
+        'INPUT': layer_sigef,
+        'OUTPUT': 'memory:fix_sigef'
+    })['OUTPUT']
+
+    print('Fixing SNCI geometry')
+    fix_geo_snci = processing.run(&quot;native:fixgeometries&quot;, {
+        'INPUT': layer_snci,
+        'OUTPUT': 'memory:fix_snci'
+    })['OUTPUT']
+
+    if not layer_sigef.isValid() or not layer_snci.isValid():
+        print(&quot;Error loading layers. Check the paths.&quot;)
+        return
+
+    print(&quot;Starting clip of SNCI base...&quot;)
+
+    # 2. Run 'Difference': Removes from SNCI what is overlapped by SIGEF
+    # This ensures there will be no geometric duplication.
+    params_diff = {
+        'INPUT': fix_geo_snci,
+        'OVERLAY': fix_geo_sigef,
+        'OUTPUT': 'memory:SNCI_Recortado'
+    }
+    result_diff = processing.run(&quot;native:difference&quot;, params_diff)
+    snci_recortado = result_diff['OUTPUT']
+
+    print(&quot;Cleaning topological residuals (Slivers)...&quot;)
+
+    # 3. Optional: Filter irrelevant polygons generated by the clip (e.g. &lt; 1m2)
+    # In QGIS, this can be done via expression selection
+    snci_recortado.setSubsetString(&quot;area($geometry) &gt; 5&quot;)
+
+    print(&quot;Unifying layers...&quot;)
+
+    # 4. Merge the layers: SIGEF (intact) + SNCI (only non-certified areas)
+    #outputFile = output
+    params_merge = {
+        'LAYERS': [layer_sigef, snci_recortado],
+        'CRS': 'ESRI:102033',
+        'OUTPUT': 'memory:Malha_Consolidada_Final'
+    }
+    result_final = processing.run(&quot;native:mergevectorlayers&quot;, params_merge)['OUTPUT']
+
+    print(&quot;Process completed. Layer 'Malha_Consolidada_Final' added.&quot;)
+    analisar_sobreposicao_otimizado(result_final,saida)
+
+
+# Example call (adjust paths to your reality):
+saida = input('Enter the output file:')
+
+# Start of processing
+print('Start of processing',datetime.datetime.now())
+
+# INCRA / SNCI Integration
+consolidar_malhas_qgis(saida)
+
+# End of processing
+print('End of processing', datetime.datetime.now())
+
+# Clean Finalization
+qgs.exitQgis()
+</code></pre>
+
+
+</details>
+
+<h3 id="code-for-processing-rural-environmental-registry-car-data">Code for processing Rural Environmental Registry (CAR) data</h3>
+<details>
+<summary>Tips for collapsed sections</summary>
+
+
+<pre><code class="language-python"># Import modules
+from qgis.core import  QgsProject, QgsVectorLayer, QgsFeatureRequest, QgsFeature, QgsApplication,QgsDataSourceUri, QgsSpatialIndex,QgsGeometry
+from qgis import processing
+import sys
+from qgis.analysis import QgsNativeAlgorithms
+import os
+import datetime
+
+# Standalone Environment Configuration
+qgis_prefix = r'C:\Program Files\QGIS 3.xx\apps\qgis'
+QgsApplication.setPrefixPath(qgis_prefix, True)
+qgs = QgsApplication([], False)
+qgs.initQgis()
+
+sys.path.append(r'C:\PROGRA~1\QGIS34~1.4\apps\qgis\python\plugins')
+
+import processing
+from processing.core.Processing import Processing
+Processing.initialize() 
+
+# 4. Add native algorithms
+QgsApplication.processingRegistry().addProvider(QgsNativeAlgorithms())
+
+
+# Save excluded layers
+def salvar_camada_excluidos(lista_feicoes, campos, pasta_saida, nome_arquivo):
+    &quot;&quot;&quot;
+    Creates a GeoPackage to store features that were blocked at any stage.
+    &quot;&quot;&quot;
+    if not lista_feicoes:
+        return
+
+    # Define the full path
+    caminho_final = os.path.join(pasta_saida, nome_arquivo)
+
+    # 2. Create a temporary layer in memory with the same structure as the original layer
+    # We use MultiPolygon because it is the CAR standard
+    uri = &quot;MultiPolygon?crs=EPSG:4674&quot; # Or use the CRS of your original layer
+    camada_temp = QgsVectorLayer(uri, &quot;temp_excluidos&quot;, &quot;memory&quot;)
+    provider = camada_temp.dataProvider()
+
+    # 3. Add original fields + the reason field (in case it does not exist in the passed fields)
+    provider.addAttributes(campos)
+    camada_temp.updateFields()
+
+    # 4. Add features to the memory layer
+    provider.addFeatures(lista_feicoes)
+
+    # 5. Save the memory layer in a GeoPackage file on disk
+    params = {
+        'INPUT': camada_temp,
+        'OUTPUT': caminho_final,
+        'LAYER_NAME': 'excluidos',
+        'DATASOURCE_OPTIONS': '',
+        'LAYER_OPTIONS': ''
+    }
+
+    # native:savefeatures is the safest command to export files in QGIS Standalone
+    processing.run(&quot;native:savefeatures&quot;, params)
+    print(f&quot;--&gt; Audit file generated: {nome_arquivo} ({len(lista_feicoes)} features)&quot;)
+
+
+def analisar_sobreposicao_car(layer,outfolder):
+
+    if not os.path.exists(outfolder): os.makedirs(outfolder)
+    coluna_modulo = 'mod_fical_calc' # Make sure this name is correct in your database
+
+    print(f&quot;[{datetime.datetime.now().strftime('%H:%M:%S')}] Creating Spatial Index and Cache...&quot;)
+    all_features = {f.id(): f for f in layer.getFeatures()}
+    geom_cache = {f.id(): f.geometry() for f in all_features.values()}
+    index = QgsSpatialIndex(layer.getFeatures())
+
+    ids_com_sobreposicao = []
+
+    print(f&quot;[{datetime.datetime.now().strftime('%H:%M:%S')}] Analyzing overlap tolerances...&quot;)
+    for f_id, feat in all_features.items():
+        geom = feat.geometry()
+        area_original = geom.area()
+        if area_original &lt;= 0: continue
+
+        # Gets the fiscal module value of the current property
+        val_modulo = feat.attribute(coluna_modulo)
+        if val_modulo is None:
+            val_modulo = 0 
+
+        # Tolerance threshold to consider CAR Property overlap
+        if val_modulo &lt; 4.0:
+            limite_tolerancia = 10.0
+        elif 4.0 &lt;= val_modulo &lt;= 15.0:
+            limite_tolerancia = 5.0
+        else: # Above 15
+            limite_tolerancia = 3.0
+        # -----------------------------------------
+
+        candidates = index.intersects(geom.boundingBox())
+        inter_area = 0
+
+        for c_id in candidates:
+            if c_id == f_id: continue
+            other_geom = geom_cache[c_id]
+
+            # Only calculates real intersection if there is contact
+            if geom.intersects(other_geom):
+                intersection = geom.intersection(other_geom)
+                inter_area += intersection.area()
+
+                # Optimization: If it has already exceeded the limit, no need to sum the rest
+                if (inter_area / area_original) * 100 &gt; limite_tolerancia:
+                    break
+
+        if (inter_area / area_original) * 100 &gt; limite_tolerancia:
+            ids_com_sobreposicao.append(f_id)
+
+    # --- 1. Export WITHOUT Overlap (Accepted within tolerance) ---
+    print(f&quot;Exporting accepted CAR (within tolerance)...&quot;)
+    path_sem = os.path.join(outfolder, 'car_aceito_tolerancia.gpkg')
+    fids_sem = list(set(all_features.keys()) - set(ids_com_sobreposicao))
+
+    temp_sem = QgsVectorLayer(f&quot;MultiPolygon?crs={layer.crs().authid()}&quot;, &quot;sem_sob&quot;, &quot;memory&quot;)
+    temp_sem.dataProvider().addAttributes(layer.fields())
+    temp_sem.updateFields()
+    temp_sem.dataProvider().addFeatures([all_features[fid] for fid in fids_sem])
+    processing.run(&quot;native:savefeatures&quot;, {'INPUT': temp_sem, 'OUTPUT': path_sem})
+
+    # --- 2. Process WITH Overlap (Hierarchical Clipping) ---
+    print(f&quot;[{datetime.datetime.now().strftime('%H:%M:%S')}] Starting Hierarchical Clipping of conflicts...&quot;)
+
+    # The rest of the sorting and clipping code remains the same to ensure topology
+    print(f&quot;Sorting {len(ids_com_sobreposicao)} properties for clipping...&quot;)
+
+    feats_sob = [all_features[fid] for fid in ids_com_sobreposicao]
+    feats_ordenadas = sorted(feats_sob, key=lambda f: f.attribute(coluna_modulo) or 999999)
+
+    path_com_recortado = os.path.join(outfolder, 'car_conflitos_resolvidos.gpkg')
+    layer_resultado = QgsVectorLayer(f&quot;MultiPolygon?crs={layer.crs().authid()}&quot;, &quot;resultado&quot;, &quot;memory&quot;)
+    layer_resultado.dataProvider().addAttributes(layer.fields())
+    layer_resultado.updateFields()
+
+    processed_index = QgsSpatialIndex()
+    processed_geoms = {}
+
+    print(&quot;Starting hierarchical clipping...&quot;)
+
+    ids_excluidos_conflito = []
+
+    for i, feat in enumerate(feats_ordenadas):
+            geom_atual = feat.geometry()
+
+            # Searches only for those already processed and nearby
+            candidates = processed_index.intersects(geom_atual.boundingBox())
+            for c_id in candidates:
+                geom_fixa = processed_geoms[c_id]
+                if geom_atual.intersects(geom_fixa):
+                    geom_atual = geom_atual.difference(geom_fixa)
+                    if geom_atual.isEmpty(): 
+                        break
+
+            if not geom_atual.isEmpty() and geom_atual.area() &gt; 1.0:
+                #feat.setGeometry(geom_atual)
+                #layer_resultado.addFeature(feat)
+                #processed_index.addFeature(feat)
+                #processed_geoms[feat.id()] = geom_atual
+                feat.setGeometry(geom_atual)
+                layer_resultado.dataProvider().addFeatures([feat])
+
+                # ADDS TO THE INDEX for the next properties
+                new_id = feat.id()
+                processed_index.addFeature(feat)
+                processed_geoms[new_id] = geom_atual
+            else:
+
+                    salvar_camada_excluidos(feicoes_excluidas, final_clean.fields(), outfolder, 'car_excluidos_grilagem.gpkg')
+            if i % 500 == 0:
+                print(f&quot;Processed: {i}/{len(feats_ordenadas)} properties.&quot;)
+
+    processing.run(&quot;native:savefeatures&quot;, {'INPUT': layer_resultado, 'OUTPUT': path_com_recortado})
+    print(f&quot;Processing completed. Tolerances applied: &lt;4MF:10%, 4-15MF:5%, &gt;15MF:3%.&quot;)
+
+def processar_car_prioridade_atual(outfolder):
+
+    # 1. Load Layers
+    uri = QgsDataSourceUri()
+    uri.setConnection(&quot;localhost&quot;, &quot;5432&quot;, &quot;postgis&quot;, &quot;postgres&quot;, &quot;123456&quot;)
+
+    #uri.setDataSource(&quot;mfa&quot;, &quot;11_base_cartografica_municipios&quot;, &quot;geom&quot;)
+    uri.setDataSource(&quot;mfa&quot;, &quot;11_base_cartografica_municipios&quot;, &quot;geom&quot;)
+    layer_mun = QgsVectorLayer(uri.uri(), &quot;municipio_PostGIS&quot;, &quot;postgres&quot;)
+    print('Total of Municipalities:',layer_mun.featureCount())
+
+    uri.setDataSource(&quot;mfa&quot;, &quot;10_malha_fundiaria_imoveis_rurais_car_calc&quot;, &quot;geom&quot;)
+    #uri.setSql(&quot;cod_estado = 'GO'&quot;)
+    layer_car = QgsVectorLayer(uri.uri(), &quot;car_PostGIS&quot;, &quot;postgres&quot;)
+    print('Total of CARs:',layer_car.featureCount())
+    if not layer_car.isValid():
+        print(&quot;Error loading CAR base.&quot;)
+        return
+
+    # 2. Initial Filter (Status and Typology)
+    print(&quot;Filtering Status and Typology...&quot;)
+    query = (
+        &quot;NOT \&quot;des_condic\&quot; LIKE 'Suspenso%' AND &quot;
+        &quot;NOT \&quot;des_condic\&quot; LIKE 'Cancelado%' AND &quot;
+        #&quot;\&quot;cod_estado\&quot; LIKE 'GO' AND &quot;
+        &quot;\&quot;ind_tipo\&quot; NOT IN ('AST', 'PCT')&quot;
+    )
+    layer_car.setSubsetString(query)
+
+    # 3. Sorting by Date (From newest to oldest)
+    # We create an ordered temporary layer so that the 'Delete Duplicates' gets the top
+    print(&quot;Sorting records by field...&quot;)
+    expressao_composta = '&quot;dat_atuali&quot; DESC, &quot;mod_fical_calc&quot; ASC'
+    layer_ordenada = processing.run(&quot;native:orderbyexpression&quot;, {
+        'INPUT': layer_car,
+        'EXPRESSION': expressao_composta,
+        'ASCENDING': False, 
+        'NULLS_FIRST': False,
+        'OUTPUT': 'memory:car_ordenado'
+    })['OUTPUT']
+    print('Total of sorted layers:',layer_ordenada.featureCount())
+
+    # 4. Fix Geometries
+    fix_geo = processing.run(&quot;native:fixgeometries&quot;, {
+        'INPUT': layer_ordenada,
+        'OUTPUT': 'memory:temp_fix'
+    })['OUTPUT']
+
+    # 5. Remove Duplicate Geometries
+    # QGIS keeps the first feature found. Since we sorted, it will keep the MOST RECENT one.
+    print(&quot;Removing duplicate geometries (Keeping the most recent)...&quot;)
+    no_double_geo = processing.run(&quot;native:deleteduplicategeometries&quot;, {
+        'INPUT': fix_geo,
+        'OUTPUT': 'memory:temp_no_double'
+    })['OUTPUT']
+    print('Total of non-duplicate layers:',no_double_geo.featureCount())
+
+    # 6. Remove Duplicates by Attribute (Same COD_IMOVEL)
+    print(&quot;Removing duplicates by Property Code...&quot;)
+    final_clean = processing.run(&quot;native:removeduplicatesbyattribute&quot;, {
+        'INPUT': no_double_geo,
+        'FIELDS': ['cod_imovel'], 
+        'OUTPUT': 'memory:car_limpo_final'
+    })['OUTPUT']
+    print('Total of non-duplicate layers by property layer:',no_double_geo.featureCount())
+
+
+    # 7. Area Filter (Property &lt; Municipality)
+    print(&quot;Validating area consistency with the municipal mesh...&quot;)
+
+    # 2. Join by Table (Much faster than spatial)
+    #---------------------------------------------------------------------------------------Digital Land Grabbing---------------------------------
+
+    print(&quot;Removing Digital Land Grabbing...&quot;)
+    municipios_area = {str(f['CD_MUN']).split(): f['AREA_KM2'] for f in layer_mun.getFeatures()}
+
+    # List of excluded and valid properties
+    feicoes_validas = []
+    feicoes_excluidas = []
+
+    for imovel in final_clean.getFeatures():
+        cod_mun = str(imovel['codmun']).strip()
+        if cod_mun in municipios_area:
+            area_imovel_km2 = imovel.geometry().area() / 1000000.0
+            if area_imovel_km2 &lt; municipios_area[cod_mun]:
+                feicoes_validas.append(imovel)
+            else:
+                imovel.setAttribute(imovel.fieldNameIndex('motivo_excl'), 'Area Maior que Municipio')
+                feicoes_excluidas.append(imovel)
+        else:
+            imovel.setAttribute(imovel.fieldNameIndex('motivo_excl'), 'Codigo Municipio Nao Encontrado')
+            feicoes_excluidas.append(imovel) 
+
+    # Export immediately those blocked by area/code
+    if feicoes_excluidas:
+        salvar_camada_excluidos(feicoes_excluidas, final_clean.fields(), outfolder, 'car_excluidos_grilagem.gpkg')
+
+    crs_authid = final_clean.crs().authid()
+    uri = f&quot;MultiPolygon?crs={crs_authid}&quot;
+
+    # 2. Create the layer in memory
+    # The name &quot;CAR_Validado&quot; is how it would appear in the QGIS legend
+    camada_final_validada = QgsVectorLayer(uri, &quot;CAR_Saneado_Grilagem&quot;, &quot;memory&quot;)    
+    provider = camada_final_validada.dataProvider()
+    camada_final_validada.startEditing()
+    provider.addAttributes(final_clean.fields())
+    camada_final_validada.updateFields()
+    provider.addFeatures(feicoes_validas)
+    camada_final_validada.commitChanges()
+    provider = None
+
+    print(&quot;Starting spatial overlap analysis (Self-Intersection)...&quot;)
+
+    #----------------------------------------------------------------------------Overlap analysis
+    analisar_sobreposicao_car(camada_final_validada,outfolder)
+    print('Finished.....')
+
+# Example: Make sure to use the correct name of the date field of your file
+saida = input('Enter the output file:')
+print('Start of processing of CAR properties...',datetime.datetime.now())
+processar_car_prioridade_atual(saida)
+print('End of processing of CAR properties',datetime.datetime.now())
+# Clean Finalization
+qgs.exitQgis()
+</code></pre>
+
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
